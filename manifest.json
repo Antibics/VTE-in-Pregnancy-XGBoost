@@ -1,0 +1,191 @@
+{
+  "format": "vte-xgb-sigmoid-v1",
+  "created_utc": "2026-11-05T20:02:05.739338+00:00",
+  "outcome": "VTE diagnosed after obstetric admission and before the end of pregnancy",
+  "positive_class": 1,
+  "prediction_time": "Admission",
+  "input_contract": "Already coded numeric admission features; complete unless an optional private imputer is supplied",
+  "export_environment": {
+    "python": "3.12.9",
+    "numpy": "2.0.2",
+    "pandas": "2.2.3",
+    "scipy": "1.14.1",
+    "xgboost": "2.1.2"
+  },
+  "saved_training_packages": {
+    "numpy": "2.0.2",
+    "pandas": "2.2.3",
+    "scipy": "1.14.1",
+    "scikit-learn": "1.5.2",
+    "xgboost": "2.1.2"
+  },
+  "verification_protocol": "v2: strict same-CPU roundtrip and sigmoid checks; separate original-runtime comparison",
+  "models": {
+    "10": {
+      "model_file": "xgboost_10_features.json",
+      "model_sha256": "5d10f61cb472788c2641a26448701b53f24b1c797baeeafd62295947d968783d",
+      "features": [
+        "年龄",
+        "BMI",
+        "妊娠周数",
+        "分娩次数",
+        "既往剖宫产史",
+        "既往血栓病史",
+        "多胎妊娠",
+        "心脏病",
+        "易栓症",
+        "下肢水肿"
+      ],
+      "rounds": 454,
+      "sigmoid": {
+        "intercept": 0.362791707950052,
+        "slope": 1.0766190245971015,
+        "formula": "p = expit(intercept + slope * raw_xgboost_margin)"
+      },
+      "feature_definitions": {
+        "年龄": {
+          "name": "Age",
+          "type": "continuous",
+          "coding": "Years; age >=18"
+        },
+        "BMI": {
+          "name": "BMI at admission",
+          "type": "continuous",
+          "coding": "kg/m^2; admission BMI"
+        },
+        "妊娠周数": {
+          "name": "Gestational stage at admission",
+          "type": "binary",
+          "coding": "0: first/second trimester (<28 weeks); 1: third trimester (>=28 weeks). Not gestational weeks."
+        },
+        "分娩次数": {
+          "name": "Parity",
+          "type": "binary",
+          "coding": "0: <3 deliveries; 1: >=3 deliveries. Not a raw count."
+        },
+        "既往剖宫产史": {
+          "name": "History of cesarean delivery",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "既往血栓病史": {
+          "name": "History of thrombosis",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "多胎妊娠": {
+          "name": "Multiple gestation",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "心脏病": {
+          "name": "Heart disease",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "易栓症": {
+          "name": "Thrombophilia",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "下肢水肿": {
+          "name": "Lower-limb edema at admission",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        }
+      },
+      "source_prediction_config": {
+        "device": "cuda:0",
+        "fail_on_invalid_gpu_id": "0",
+        "n_jobs": "4",
+        "nthread": "4",
+        "random_state": "42",
+        "seed": "42",
+        "seed_per_iteration": "0",
+        "validate_parameters": "1"
+      },
+      "source": "xgb_retune_cv10_experiment.final_bundle",
+      "workflow": "10 outer folds; final fitted model, not a fold ensemble"
+    },
+    "9": {
+      "model_file": "xgboost_9_features.json",
+      "model_sha256": "8f832565f8c15fc82d67bf852432f64f8678961e9fe20562754b72f11abf27f2",
+      "features": [
+        "年龄",
+        "BMI",
+        "妊娠周数",
+        "分娩次数",
+        "既往剖宫产史",
+        "既往血栓病史",
+        "多胎妊娠",
+        "心脏病",
+        "易栓症"
+      ],
+      "rounds": 440,
+      "sigmoid": {
+        "intercept": 0.45239555052920544,
+        "slope": 1.0949350190630616,
+        "formula": "p = expit(intercept + slope * raw_xgboost_margin)"
+      },
+      "feature_definitions": {
+        "年龄": {
+          "name": "Age",
+          "type": "continuous",
+          "coding": "Years; age >=18"
+        },
+        "BMI": {
+          "name": "BMI at admission",
+          "type": "continuous",
+          "coding": "kg/m^2; admission BMI"
+        },
+        "妊娠周数": {
+          "name": "Gestational stage at admission",
+          "type": "binary",
+          "coding": "0: first/second trimester (<28 weeks); 1: third trimester (>=28 weeks). Not gestational weeks."
+        },
+        "分娩次数": {
+          "name": "Parity",
+          "type": "binary",
+          "coding": "0: <3 deliveries; 1: >=3 deliveries. Not a raw count."
+        },
+        "既往剖宫产史": {
+          "name": "History of cesarean delivery",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "既往血栓病史": {
+          "name": "History of thrombosis",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "多胎妊娠": {
+          "name": "Multiple gestation",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "心脏病": {
+          "name": "Heart disease",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        },
+        "易栓症": {
+          "name": "Thrombophilia",
+          "type": "binary",
+          "coding": "0: no; 1: yes"
+        }
+      },
+      "source_prediction_config": {
+        "device": "cuda:0",
+        "fail_on_invalid_gpu_id": "0",
+        "n_jobs": "4",
+        "nthread": "4",
+        "random_state": "42",
+        "seed": "42",
+        "seed_per_iteration": "0",
+        "validate_parameters": "1"
+      },
+      "source": "edema9_experiment.final.bundle",
+      "workflow": "10 outer folds; final fitted model, not a fold ensemble"
+    }
+  }
+}
