@@ -37,3 +37,18 @@ Software reports distinguish saved training-time versions from the current envir
 No participant records, outcomes or individual predictions are included in the export.
 The model package supports prediction; it does not reproduce training or cross-validation.
 External calibration was imperfect; clinical implementation requires further evaluation.
+
+## Files
+
+| File | Description |
+|---|---|
+| `README.md` | Model overview, input requirements, and usage instructions. |
+| `feature_dictionary.csv` | Predictor definitions and coding rules. |
+| `input_template_10_features.csv` | Input template for the 10-feature model. |
+| `input_template_9_features.csv` | Input template for the 9-feature model excluding lower-limb edema. |
+| `xgboost_10_features.json` | Fitted 10-feature XGBoost model. |
+| `xgboost_9_features.json` | Fitted 9-feature XGBoost sensitivity model excluding lower-limb edema. |
+| `manifest.json` | Feature order, sigmoid calibration parameters, prediction settings, and model checksums. |
+| `predict_vte.py` | Script for generating calibrated predictions using either model. |
+| `requirements-prediction.txt` | Python packages and versions required for prediction. |
+| `verification.json` | Results of model export and prediction consistency checks. |
